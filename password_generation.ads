@@ -1,5 +1,9 @@
 -- Password_Generation: A package to contain the common logic used by Password_Gen and pwdgen
 -- Copyright (C) 2018 by PragmAda Software Engineering.  All rights reserved.
+-- SPDX-License-Identifier: GPL-2.0-or-later WITH GNAT-exception
+-- See https://spdx.org/licenses/
+-- If you find this software useful, please let me know, either through
+-- github.com/jrcarter or directly to pragmada@pragmada.x10hosting.com
 -- **************************************************************************
 --
 -- Generation of secure passwords from a domain, master password, and symbol
@@ -24,7 +28,7 @@
 -- V1.0  2017 Nov 15     Move password-generation logic into a package
 --
 package Password_Generation is
-   subtype Length_Value is Integer range 8 .. 16;
+   subtype Length_Value is Integer range 8 .. 20;
 
    subtype Symbol_Range is Natural range 0 .. 9;
 

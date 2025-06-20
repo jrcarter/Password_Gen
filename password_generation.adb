@@ -1,5 +1,9 @@
 -- Password_Generation: A package to contain the common logic used by Password_Gen and pwdgen
 -- Copyright (C) 2017 by PragmAda Software Engineering.  All rights reserved.
+-- SPDX-License-Identifier: GPL-2.0-or-later WITH GNAT-exception
+-- See https://spdx.org/licenses/
+-- If you find this software useful, please let me know, either through
+-- github.com/jrcarter or directly to pragmada@pragmada.x10hosting.com
 -- **************************************************************************
 --
 -- Generation of secure passwords from a domain, master password, and symbol
@@ -8,7 +12,7 @@
 --
 with Ada.Characters.Handling;
 with GNAT.SHA512;
-with PragmARC.Unbounded_Integers;
+with PragmARC.Unbounded_Numbers.Integers;
 
 package body Password_Generation is
    function Generate (Domain : String; Master : String; Length : Length_Value; Symbol : String; Hash_Symbol : Boolean := True)
@@ -23,8 +27,8 @@ package body Password_Generation is
       function Digest (Source : String) return String is
          -- Empty
       begin -- Digest
-         return PragmARC.Unbounded_Integers.Image (PragmARC.Unbounded_Integers.Value ("16#" & Gnat.SHA512.Digest (Source) & '#'),
-                                                   Base => 36);
+         return PragmARC.Unbounded_Numbers.Integers.Image
+                   (PragmARC.Unbounded_Numbers.Integers.Value ("16#" & GNAT.SHA512.Digest (Source) & '#'), Base => 36);
       end Digest;
 
       Hash_Domain : constant String := Ada.Characters.Handling.To_Lower (Domain);
